@@ -1,0 +1,59 @@
+.app-shell { display: flex; min-height: 100vh; }
+.sidebar {
+  width: var(--sidebar-width);
+  background: #1c1b19;
+  color: #f5f4f0;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  z-index: 40;
+  transition: transform var(--transition);
+}
+.sidebar-brand {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 1.25rem 1.15rem;
+  font-weight: 700; font-size: 1.1rem;
+  letter-spacing: -0.02em;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.sidebar-nav {
+  flex: 1; padding: 0.75rem 0.65rem; overflow-y: auto;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.nav-link {
+  display: flex; align-items: center; gap: 0.65rem;
+  padding: 0.6rem 0.75rem; border-radius: var(--radius-sm);
+  color: rgba(245, 244, 240, 0.7); font-size: 0.9rem; font-weight: 500;
+  transition: background var(--transition), color var(--transition);
+}
+.nav-link:hover { background: rgba(255,255,255,0.06); color: #fff; }
+.nav-link.active { background: var(--accent); color: #fff; }
+.sidebar-footer { padding: 0.85rem; border-top: 1px solid rgba(255,255,255,0.08); }
+.user-chip { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem; }
+.user-avatar {
+  width: 32px; height: 32px; border-radius: 8px; background: var(--accent);
+  display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.85rem;
+}
+.user-email { font-size: 0.8rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px; }
+.user-role { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.04em; color: rgba(245,244,240,0.5); }
+.main-area { flex: 1; margin-left: var(--sidebar-width); display: flex; flex-direction: column; min-width: 0; }
+.topbar {
+  height: 56px; display: flex; align-items: center; justify-content: space-between;
+  padding: 0 1.25rem; background: var(--bg-elevated); border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 20;
+}
+.menu-btn { display: none; }
+.role-pill {
+  font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;
+  padding: 0.25rem 0.6rem; border-radius: 999px; background: var(--accent-soft); color: var(--accent);
+}
+.main-content { flex: 1; padding: 1.5rem 1.5rem 2.5rem; max-width: 1400px; width: 100%; }
+.sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 35; }
+@media (max-width: 900px) {
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.open { transform: translateX(0); }
+  .main-area { margin-left: 0; }
+  .menu-btn { display: inline-flex; }
+  .sidebar-overlay { display: block; }
+}
