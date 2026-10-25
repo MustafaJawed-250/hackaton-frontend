@@ -23,7 +23,7 @@ export default function AdminAccess() {
     setStatusLoading(true);
     setSetupStatusError('');
     try {
-      const { data } = await api.get('/api/v1/setup/status');
+    const { data } = await api.get('/setup/status');
       setSetupStatus(data.data);
       if (!data.data.isSetupComplete) setMode('setup');
     } catch (err) {
