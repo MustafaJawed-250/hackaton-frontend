@@ -1,10 +1,21 @@
+
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || '/api/v1',
+  baseURL: (
+    import.meta.env.VITE_API_URL ||
+    (import.meta.env.DEV
+      ? 'http://localhost:5000/api/v1'
+      : 'https://hcm-backend-mu.vercel.app/api/v1')
+  ).replace(/\/+$/, ''),
   withCredentials: true,
-  headers: { 'Content-Type': 'application/json' },
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
+
+
+
 
 api.interceptors.request.use((config) => {
   const token = sessionStorage.getItem('hcm_token');
